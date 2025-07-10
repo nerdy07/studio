@@ -6,16 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import React from 'react';
+import React, { useState } from 'react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { cn } from '@/lib/utils';
 
 export default function LoginPage() {
   const router = useRouter();
+  const [role, setRole] = useState('citizen');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, you'd have auth logic here.
-    // On success, redirect to the dashboard.
-    router.push('/dashboard');
+    // On success, redirect based on the selected role.
+    if (role === 'agent') {
+      router.push('/agent/dashboard');
+    } else {
+      router.push('/dashboard');
+    }
   };
 
   return (
@@ -26,6 +33,32 @@ export default function LoginPage() {
       </CardHeader>
       <form onSubmit={handleLogin}>
         <CardContent className="space-y-4">
+          <RadioGroup defaultValue="citizen" onValueChange={setRole} className="grid grid-cols-2 gap-4">
+            <div>
+              <RadioGroupItem value="citizen" id="citizen" className="peer sr-only" />
+              <Label
+                htmlFor="citizen"
+                className={cn(
+                    "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground",
+                    role === 'citizen' && "border-primary"
+                )}
+              >
+                Citizen
+              </Label>
+            </div>
+            <div>
+              <RadioGroupItem value="agent" id="agent" className="peer sr-only" />
+              <Label
+                htmlFor="agent"
+                 className={cn(
+                    "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground",
+                    role === 'agent' && "border-primary"
+                )}
+              >
+                Agent
+              </Label>
+            </div>
+          </RadioGroup>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" placeholder="name@example.com" required />
