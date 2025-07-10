@@ -1,29 +1,34 @@
+import React from 'react';
+
 export default function PrintLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <>
+      <head>
+        {/* We can inject styles directly into the head of the main document */}
         <style>{`
             @media print {
                 body {
                     -webkit-print-color-adjust: exact;
                     print-color-adjust: exact;
+                    background-color: #fff !important;
                 }
                 .no-print {
                     display: none !important;
                 }
+                main {
+                  background-color: #f3f4f6 !important; /* bg-gray-100 for print preview */
+                }
             }
         `}</style>
       </head>
-      <body className="font-body antialiased bg-gray-200">
+      {/* The root layout already provides the body tag */}
+      <main className="bg-gray-100 print:bg-white">
         {children}
-      </body>
-    </html>
+      </main>
+    </>
   );
 }
