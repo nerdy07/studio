@@ -4,16 +4,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowUpRight, FileCheck, FileClock, FileQuestion, FileText, Plus } from 'lucide-react';
+import { ArrowUpRight, FileCheck, FileClock, FileQuestion, FileText, Plus, Search } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import type { ChartConfig } from '@/components/ui/chart';
 import { applications, userProfile } from '@/lib/data';
 import { useState } from 'react';
 import { ProfileCompletionDialog } from '@/components/profile-completion-dialog';
+import { Input } from '@/components/ui/input';
 
-const StatCard = ({ title, value, icon: Icon, detail, change }: { title: string, value: string, icon: React.ElementType, detail: string, change?: string }) => {
+const StatCard = ({ title, value, icon: Icon }: { title: string, value: string | number, icon: React.ElementType }) => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -22,25 +23,15 @@ const StatCard = ({ title, value, icon: Icon, detail, change }: { title: string,
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
-        <p className="text-xs text-muted-foreground">{detail}</p>
-        {change && (
-          <div className="flex items-center gap-1 text-xs text-green-600 mt-2">
-            <ArrowUpRight className="h-4 w-4" />
-            {change}
-          </div>
-        )}
       </CardContent>
     </Card>
   )
 }
 
 const chartData = [
-  { month: 'January', approved: 18, pending: 12, rejected: 4 },
-  { month: 'February', approved: 30, pending: 15, rejected: 5 },
-  { month: 'March', approved: 22, pending: 18, rejected: 2 },
-  { month: 'April', approved: 45, pending: 20, rejected: 8 },
-  { month: 'May', approved: 38, pending: 25, rejected: 5 },
-  { month: 'June', approved: 52, pending: 22, rejected: 3 },
+  { name: 'Approved', value: applications.filter(a => a.status === 'Approved').length, fill: 'var(--color-approved)' },
+  { name: 'Pending', value: applications.filter(a => a.status === 'Paid').length, fill: 'var(--color-pending)' },
+  { name: 'Rejected', value: applications.filter(a => a.status === 'Rejected').length, fill: 'var(--color-rejected)' },
 ];
 
 const chartConfig = {
@@ -70,94 +61,87 @@ export default function DashboardPage() {
       setShowProfileDialog(true);
     }
   };
-
-  const recentActivities = [
-    {
-      id: 1,
-      type: 'New Application',
-      description: 'You submitted an Affidavit for Change of Name.',
-      time: '2 hours ago',
-      icon: FileText
-    },
-    {
-      id: 2,
-      type: 'Application Approved',
-      description: 'Your Affidavit of Age Declaration was approved.',
-      time: '1 day ago',
-      icon: FileCheck
-    },
-    {
-      id: 3,
-      type: 'Application Queried',
-      description: 'Your application for Loss of ID was queried.',
-      time: '3 days ago',
-      icon: FileQuestion
-    }
-  ];
+  
+  const totalApplications = applications.length;
 
   return (
     <>
       <div className="flex flex-col gap-8">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Welcome back, {userProfile.fullName.split(' ')[0]}!</h1>
-            <p className="text-muted-foreground">Here&apos;s a summary of your activities and applications.</p>
+          <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <div className="flex items-center gap-2">
+             <div className="relative">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search..."
+                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px] bg-card"
+              />
+            </div>
+            <Button onClick={handleCreateAffidavitClick}>
+              <Plus className="mr-2 h-4 w-4" />
+              New Application
+            </Button>
           </div>
-          <Button onClick={handleCreateAffidavitClick}>
-            <Plus className="-ml-1 mr-2 h-4 w-4" />
-            New Application
-          </Button>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <StatCard title="Total Applications" value={String(applications.length)} icon={FileText} detail="All time applications" change="+5 this month" />
-          <StatCard title="Approved" value={String(applications.filter(a => a.status === 'Approved').length)} icon={FileCheck} detail="Successfully processed" />
-          <StatCard title="Pending" value={String(applications.filter(a => a.status === 'Paid').length)} icon={FileClock} detail="Awaiting review" />
-          <StatCard title="Queried/Rejected" value={String(applications.filter(a => a.status === 'Rejected').length)} icon={FileQuestion} detail="Require your attention" />
+          <StatCard title="Total Applications" value={totalApplications} icon={FileText} />
+          <StatCard title="Approved" value={chartData.find(d=>d.name==='Approved')?.value || 0} icon={FileCheck} />
+          <StatCard title="Pending" value={chartData.find(d=>d.name==='Pending')?.value || 0} icon={FileClock} />
+          <StatCard title="Rejected" value={chartData.find(d=>d.name==='Rejected')?.value || 0} icon={FileQuestion} />
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
           <Card className="lg:col-span-4">
             <CardHeader>
-              <CardTitle>Application Overview</CardTitle>
-              <CardDescription>A 6-month summary of your application statuses.</CardDescription>
+              <CardTitle>Application Stats</CardTitle>
+              <CardDescription>A summary of all your application statuses.</CardDescription>
             </CardHeader>
-            <CardContent className="pl-2">
-              <ChartContainer config={chartConfig} className="h-[250px] w-full">
-                <BarChart accessibilityLayer data={chartData}>
-                  <CartesianGrid vertical={false} />
-                  <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={false}
-                    tickFormatter={(value) => value.slice(0, 3)}
+            <CardContent className="flex items-center justify-center">
+              <ChartContainer config={chartConfig} className="h-[250px] w-full max-w-[300px]">
+                <PieChart>
+                  <Tooltip
+                    cursor={false}
+                    content={<ChartTooltipContent hideLabel />}
                   />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="approved" fill="var(--color-approved)" radius={4} />
-                  <Bar dataKey="pending" fill="var(--color-pending)" radius={4} />
-                  <Bar dataKey="rejected" fill="var(--color-rejected)" radius={4} />
-                </BarChart>
+                  <Pie
+                    data={chartData}
+                    dataKey="value"
+                    nameKey="name"
+                    innerRadius={60}
+                    strokeWidth={5}
+                  >
+                     {chartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Pie>
+                </PieChart>
               </ChartContainer>
             </CardContent>
           </Card>
           <Card className="lg:col-span-3">
             <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>A log of your most recent actions.</CardDescription>
+              <CardTitle>Recent Applications</CardTitle>
+              <CardDescription>
+                You have {applications.length} applications in total.
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
-                {recentActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-4">
-                    <div className="bg-muted rounded-full p-2">
-                      <activity.icon className="h-5 w-5 text-muted-foreground" />
+              <div className="space-y-4">
+                {applications.slice(0, 3).map((app) => (
+                  <div key={app.id} className="flex items-center">
+                     <Avatar className="h-9 w-9">
+                      <AvatarImage src={`https://placehold.co/36x36/EBF5FF/1D4ED8?text=${userProfile.fullName.split(' ').map(n=>n[0]).join('')}`} alt="Avatar" data-ai-hint="person avatar"/>
+                      <AvatarFallback>{userProfile.fullName.split(' ').map(n=>n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    <div className="ml-4 space-y-1">
+                      <p className="text-sm font-medium leading-none">{app.affidavitType}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {app.id}
+                      </p>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{activity.type}</p>
-                      <p className="text-sm text-muted-foreground">{activity.description}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
-                    </div>
+                    <div className="ml-auto font-medium">{app.status}</div>
                   </div>
                 ))}
               </div>

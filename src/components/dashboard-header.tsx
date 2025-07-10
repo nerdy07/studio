@@ -25,7 +25,7 @@ export function DashboardHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">
       <div className="md:hidden">
         <SidebarTrigger />
       </div>
@@ -39,7 +39,7 @@ export function DashboardHeader() {
                 <Bell className="h-5 w-5" />
                 <span className="sr-only">Notifications</span>
             </Button>
-            <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-background"></div>
+            <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-destructive rounded-full border-2 border-card"></div>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

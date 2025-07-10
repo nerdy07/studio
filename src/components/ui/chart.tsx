@@ -355,6 +355,10 @@ function getPayloadConfigFromPayload(
     : config[key as keyof typeof config]
 }
 
+const PieChart = RechartsPrimitive.PieChart;
+const Pie = RechartsPrimitive.Pie;
+const Cell = RechartsPrimitive.Cell;
+const Tooltip = RechartsPrimitive.Tooltip;
 const Bar = RechartsPrimitive.Bar;
 const BarChart = RechartsPrimitive.BarChart;
 const XAxis = RechartsPrimitive.XAxis;
@@ -367,6 +371,10 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
   Bar,
   BarChart,
   XAxis,
