@@ -120,13 +120,11 @@ export default function ApplicationsPage() {
                                 Proceed to Payment
                             </DropdownMenuItem>
                             <DropdownMenuItem 
-                                asChild
+                                onClick={() => handlePreview(app.id)}
                                 disabled={app.status !== 'Approved'}
                             >
-                                <Link href={`/applications/${app.id}/print`}>
-                                    <Printer className="mr-2 h-4 w-4" />
-                                    Print Affidavit
-                                </Link>
+                                <Printer className="mr-2 h-4 w-4" />
+                                Print Affidavit
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                         </DropdownMenu>
