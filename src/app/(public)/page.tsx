@@ -7,18 +7,18 @@ import { Logo } from '@/components/logo';
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <header className="container mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between bg-primary">
         <Logo />
         <div className="flex items-center gap-2">
-          <Button variant="ghost" asChild>
+          <Button variant="ghost" asChild className="text-white hover:bg-primary/80 hover:text-white">
             <Link href="/login">
-              <LogIn />
+              <LogIn className="mr-2"/>
               Login
             </Link>
           </Button>
-          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button asChild className="bg-white text-primary hover:bg-gray-200">
             <Link href="/signup">
-              <UserPlus />
+              <UserPlus className="mr-2"/>
               Sign Up
             </Link>
           </Button>
