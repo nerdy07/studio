@@ -14,7 +14,7 @@ export default function SignupPage() {
     e.preventDefault();
     // In a real app, you'd handle registration and email verification.
     // For now, we'll just redirect to the dashboard.
-    router.push('/');
+    router.push('/dashboard');
   };
 
   return (

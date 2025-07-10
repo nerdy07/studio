@@ -27,7 +27,7 @@ export default function DashboardLayout({
   const isActive = (path: string) => pathname === path;
 
   const navItems = [
-    { href: '/', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/applications', label: 'My Applications', icon: FileText },
     { href: '/profile', label: 'My Profile', icon: UserCircle },
   ];

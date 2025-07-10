@@ -14,7 +14,7 @@ export default function LoginPage() {
     e.preventDefault();
     // In a real app, you'd have auth logic here.
     // On success, redirect to the dashboard.
-    router.push('/');
+    router.push('/dashboard');
   };
 
   return (
