@@ -1,11 +1,12 @@
+
 'use client';
 
 import { DashboardHeader } from '@/components/dashboard-header';
 import { Sidebar, SidebarContent, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from '@/components/ui/sidebar';
-import { Home, FileText, User, Users } from 'lucide-react';
+import { Home, FileText, User } from 'lucide-react';
 import { Logo } from '@/components/logo';
 
-export default function AgentLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -20,24 +21,18 @@ export default function AgentLayout({
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/agent/dashboard" isActive>
+                <SidebarMenuButton href="/dashboard" isActive>
                   <Home />
                   Dashboard
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="#">
+                <SidebarMenuButton href="/applications">
                   <FileText />
-                  All Applications
+                  My Applications
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="#">
-                  <Users />
-                  My Clients
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-               <SidebarMenuItem>
                 <SidebarMenuButton href="/profile">
                   <User />
                   My Profile
