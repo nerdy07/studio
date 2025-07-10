@@ -1,7 +1,9 @@
+
 'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,12 +12,41 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UploadCloud } from 'lucide-react';
 import { userProfile } from '@/lib/data';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState(userProfile.details);
   
   // A mock state to simulate if any affidavit has been approved.
   const [isLocked] = useState(false); 
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setProfile(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSelectChange = (id: string) => (value: string) => {
+    setProfile(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSaveChanges = () => {
+    // In a real app, you would have an API call here to save the data.
+    // We'll just simulate it.
+    toast({
+      title: "Profile Updated",
+      description: "Your personal information has been saved.",
+    });
+
+    // Mark profile as complete after first save.
+    // In a real app, this would be based on server state.
+    userProfile.isProfileComplete = true;
+
+    setTimeout(() => {
+      router.push('/affidavits/new');
+    }, 1500);
+  };
 
   return (
     <div className="space-y-6">
@@ -43,15 +74,15 @@ export default function ProfilePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="nin">National Identification Number (NIN)</Label>
-                  <Input id="nin" defaultValue={profile.nin} disabled={isLocked} />
+                  <Input id="nin" value={profile.nin} onChange={handleInputChange} disabled={isLocked} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="occupation">Occupation</Label>
-                  <Input id="occupation" defaultValue={profile.occupation} disabled={isLocked} />
+                  <Input id="occupation" value={profile.occupation} onChange={handleInputChange} disabled={isLocked} />
                 </div>
                  <div className="space-y-2">
                   <Label htmlFor="gender">Gender</Label>
-                  <Select defaultValue={profile.gender} disabled={isLocked}>
+                  <Select value={profile.gender} onValueChange={handleSelectChange('gender')} disabled={isLocked}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select gender" />
                     </SelectTrigger>
@@ -63,7 +94,7 @@ export default function ProfilePage() {
                 </div>
                  <div className="space-y-2">
                   <Label htmlFor="religion">Religion</Label>
-                  <Select defaultValue={profile.religion} disabled={isLocked}>
+                  <Select value={profile.religion} onValueChange={handleSelectChange('religion')} disabled={isLocked}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select religion" />
                     </SelectTrigger>
@@ -76,19 +107,19 @@ export default function ProfilePage() {
                 </div>
                  <div className="space-y-2">
                   <Label htmlFor="state">State of Origin</Label>
-                  <Input id="state" defaultValue={profile.state} disabled={isLocked} />
+                  <Input id="state" value={profile.state} onChange={handleInputChange} disabled={isLocked} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lga">LGA</Label>
-                  <Input id="lga" defaultValue={profile.lga} disabled={isLocked} />
+                  <Input id="lga" value={profile.lga} onChange={handleInputChange} disabled={isLocked} />
                 </div>
               </div>
                <div className="space-y-2">
                   <Label htmlFor="address">Residential Address</Label>
-                  <Input id="address" defaultValue={profile.address} disabled={isLocked} />
+                  <Input id="address" value={profile.address} onChange={handleInputChange} disabled={isLocked} />
                 </div>
                  <div className="flex justify-end">
-                    <Button disabled={isLocked}>Save Changes</Button>
+                    <Button onClick={handleSaveChanges} disabled={isLocked}>Save and Continue</Button>
                 </div>
             </CardContent>
           </Card>
@@ -107,7 +138,7 @@ export default function ProfilePage() {
                     <DocumentUploadField label="Signature" currentImage={profile.signatureUrl} isLocked={isLocked} aiHint="signature" />
                 </div>
                  <div className="flex justify-end">
-                    <Button disabled={isLocked}>Save Changes</Button>
+                    <Button onClick={handleSaveChanges} disabled={isLocked}>Save and Continue</Button>
                 </div>
             </CardContent>
           </Card>
@@ -135,3 +166,4 @@ function DocumentUploadField({ label, currentImage, isLocked, aiHint }: { label:
         </div>
     );
 }
+
