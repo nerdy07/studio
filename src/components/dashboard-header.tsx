@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { User, LogOut, Bell } from 'lucide-react';
 import { userProfile } from '@/lib/data';
-import { Logo } from './logo';
 
 export function DashboardHeader() {
   const getInitials = (name: string) => {
@@ -26,21 +25,21 @@ export function DashboardHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-10 flex h-20 items-center gap-4 bg-primary px-4 md:px-6">
+    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <div className="md:hidden">
         <SidebarTrigger />
       </div>
-      <div className="flex-none">
-        <Logo />
-      </div>
-      <div className="flex-1" />
-      <div className="flex items-center gap-4">
+     
+      <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <div className="ml-auto flex-1 sm:flex-initial">
+             {/* Search can go here if needed */}
+          </div>
         <div className="relative">
-            <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
-                <Bell className="h-6 w-6" />
+            <Button variant="ghost" size="icon" className="rounded-full">
+                <Bell className="h-5 w-5" />
                 <span className="sr-only">Notifications</span>
             </Button>
-            <div className="absolute top-1 right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-primary"></div>
+            <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-background"></div>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -74,10 +73,6 @@ export function DashboardHeader() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-         <div className="text-primary-foreground hidden md:block">
-            <p className="font-semibold">{userProfile.fullName}</p>
-            <p className="text-sm">Party</p>
-        </div>
       </div>
     </header>
   );

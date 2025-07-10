@@ -12,7 +12,7 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen bg-background">
         <Sidebar>
           <SidebarHeader>
              <Logo />
@@ -43,7 +43,9 @@ export default function DashboardLayout({
         <div className="flex flex-col flex-1">
           <DashboardHeader />
           <SidebarInset>
-            {children}
+            <div className="p-4 sm:p-6 lg:p-8">
+              {children}
+            </div>
           </SidebarInset>
         </div>
       </div>
