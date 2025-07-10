@@ -7,6 +7,7 @@ import { FilePlus, Search, Users, FileCheck, Clock, FileX } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 const StatCard = ({ title, value, icon: Icon }: { title: string, value: string | number, icon: React.ElementType }) => {
   return (
@@ -23,10 +24,10 @@ const StatCard = ({ title, value, icon: Icon }: { title: string, value: string |
 }
 
 const recentApplications = [
-  { id: 'CL-001', name: 'Amina Yusuf', type: 'Change of Name', status: 'Approved' },
-  { id: 'CL-002', name: 'Bello Ibrahim', type: 'Age Declaration', status: 'Pending' },
-  { id: 'CL-003', name: 'Chidinma Okoro', type: 'Loss of Document', status: 'Approved' },
-  { id: 'CL-004', name: 'David Adewale', type: 'Proof of Ownership', status: 'Rejected' },
+  { id: 'APP202407-001', name: 'Amina Yusuf', type: 'Change of Name', status: 'Approved' },
+  { id: 'APP202407-002', name: 'Bello Ibrahim', type: 'Age Declaration', status: 'Pending' },
+  { id: 'APP202407-003', name: 'Chidinma Okoro', type: 'Loss of Document', status: 'Approved' },
+  { id: 'APP202406-015', name: 'David Adewale', type: 'Proof of Ownership', status: 'Rejected' },
   { id: 'CL-005', name: 'Fatima Garba', type: 'Change of Name', status: 'Pending' },
 ];
 
@@ -72,7 +73,7 @@ export default function AgentDashboardPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Client ID</TableHead>
+                <TableHead>Reference ID</TableHead>
                 <TableHead>Client Name</TableHead>
                 <TableHead>Application Type</TableHead>
                 <TableHead>Status</TableHead>
@@ -97,7 +98,9 @@ export default function AgentDashboardPage() {
                     }>{app.status}</Badge>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button variant="outline" size="sm">View Details</Button>
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href={`/agent/applications/${app.id}`}>View Details</Link>
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
