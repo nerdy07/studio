@@ -21,6 +21,11 @@ interface AffidavitDocumentProps {
 
 
 export function AffidavitDocument({ application, user, isPrintMode }: AffidavitDocumentProps) {
+  const swornDate = new Date(application.date + 'T00:00:00'); // Ensure consistent time
+  const day = swornDate.getDate();
+  const month = swornDate.toLocaleString('default', { month: 'long' });
+  const year = swornDate.getFullYear();
+
   return (
     <div className={cn(
       "bg-white font-serif text-black relative overflow-hidden",
@@ -89,7 +94,7 @@ export function AffidavitDocument({ application, user, isPrintMode }: AffidavitD
 
                  <div className="w-1/3 text-center text-sm">
                     <p>Sworn to at the High Court Registry, Gombe</p>
-                    <p>this <span className="font-bold">__{new Date().getDate()}__</span> day of <span className="font-bold">__{new Date().toLocaleString('default', { month: 'long' })}__</span>, <span className="font-bold">__{new Date().getFullYear()}__</span></p>
+                    <p>this <span className="font-bold">__{day}__</span> day of <span className="font-bold">__{month}__</span>, <span className="font-bold">__{year}__</span></p>
                 </div>
             </div>
 
