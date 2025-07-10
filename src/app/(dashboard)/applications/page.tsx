@@ -23,10 +23,12 @@ import { applications as initialApplications, Application } from '@/lib/data';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 export default function ApplicationsPage() {
     const [applications, setApplications] = useState<Application[]>(initialApplications);
     const { toast } = useToast();
+    const router = useRouter();
 
 
     const handlePayment = (appId: string) => {
@@ -47,6 +49,10 @@ export default function ApplicationsPage() {
                 description: `Payment for application ${appId} has been confirmed.`,
             });
         }, 2000);
+    };
+
+    const handlePreview = (appId: string) => {
+        router.push(`/applications/${appId}/print`);
     };
 
 
@@ -102,7 +108,7 @@ export default function ApplicationsPage() {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handlePreview(app.id)}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 Preview Sample
                             </DropdownMenuItem>

@@ -10,67 +10,66 @@ interface AffidavitDocumentProps {
       signatureUrl: string;
       address: string;
       occupation: string;
+      religion: string;
+      gender: string;
     }
   };
 }
 
-const CourtSeal = () => (
-    <div className="relative w-32 h-32" data-ai-hint="court seal">
-        <div className="absolute inset-0 border-4 border-double border-primary rounded-full"></div>
-        <div className="absolute inset-2 border-2 border-primary rounded-full"></div>
-        <div className="flex flex-col items-center justify-center h-full text-center text-primary font-bold">
-            <span className="text-xs">GOMBE STATE</span>
-            <span className="text-xs">JUDICIARY</span>
-            <div className="w-8 h-px bg-primary my-1"></div>
-            <span className="text-[10px]">OF NIGERIA</span>
-        </div>
-    </div>
-)
 
 export function AffidavitDocument({ application, user }: AffidavitDocumentProps) {
   return (
-    <div className="bg-white shadow-2xl A4-size mx-auto p-16 relative overflow-hidden font-serif text-black">
-      {/* Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center z-0">
-          <CourtSeal />
-          <p className="text-[120px] font-black text-blue-100/50 -rotate-45 tracking-widest select-none opacity-50">
-            AUTHENTIC
+    <div className="bg-white shadow-lg A4-size mx-auto p-8 sm:p-12 relative overflow-hidden font-serif text-black">
+      <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10">
+          <p className="text-[100px] sm:text-[150px] font-black text-gray-200 -rotate-45 tracking-widest select-none transform-gpu">
+            VERIFIED
           </p>
       </div>
 
       <div className="relative z-10">
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold tracking-wider">IN THE HIGH COURT OF JUSTICE</h1>
-          <h2 className="text-2xl font-bold">GOMBE STATE OF NIGERIA</h2>
-          <h3 className="text-xl font-semibold mt-4">IN THE GOMBE JUDICIAL DIVISION</h3>
-          <h4 className="text-2xl font-bold mt-6 underline uppercase">{application.affidavitType}</h4>
+            <div className="flex justify-between items-center mb-4">
+                 <Image src="https://placehold.co/100x100.png" alt="Gombe State High Court Logo" width={80} height={80} data-ai-hint="court seal"/>
+                 <div className="text-center">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-primary">GOMBE STATE</h1>
+                 </div>
+                 <Image src="https://placehold.co/100x100.png" alt="Nigerian Coat of Arms" width={80} height={80} data-ai-hint="coat of arms" />
+            </div>
+            <div className="bg-primary text-primary-foreground py-2 mb-4">
+                <h2 className="text-lg sm:text-xl font-bold uppercase tracking-wider">Affidavit</h2>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold mt-6 underline uppercase">{application.affidavitType}</h3>
+            <p className="text-sm mt-2 font-mono">REF NO. : {application.id}</p>
         </header>
 
-        <main className="text-lg leading-relaxed space-y-6 text-justify">
+        <main className="text-base sm:text-lg leading-relaxed space-y-6 text-justify relative">
+          <div className="absolute right-0 top-0 w-24 h-28 sm:w-28 sm:h-32 border-2 border-primary p-1 bg-white">
+              <Image src={user.details.passportPhotoUrl} alt="Deponent Passport" layout="fill" objectFit="cover" data-ai-hint="person face" />
+          </div>
           <p>
-            I, <span className="font-bold">{user.fullName}</span>, {user.details.gender || 'Male'}
-            , {user.details.religion || 'Christian'}, a citizen of the Federal Republic of Nigeria, residing at {' '}
-            <span className="font-bold">{user.details.address || '123 Main Street, Gombe'}</span>, do hereby make oath and state as follows:
+            I, <span className="font-bold uppercase">{user.fullName}</span>, {user.details.gender || 'MALE'}, {user.details.occupation || 'NIGERIAN CITIZEN'}, {user.details.religion || 'MUSLIM'}, citizen of <span className="font-bold">{user.details.address || 'NIGERIA'}</span>, do hereby make an oath and declare as follows:
           </p>
+          <ol className="list-decimal list-inside space-y-4 pt-4">
+            <li>That I am the deponent and the information contained herein is true and correct to the best of my knowledge and belief, and that the photograph is attached herein.</li>
+             {application.affidavitType === 'Affidavit of Age Declaration' && (
+                <>
+                <li>That according to the information I received from my parents, which I verily believe to be true and correct, I was born on the 23rd of June, 1996 in Suleja, Niger state of Nigeria.</li>
+                <li>That at the time of my birth, my birth was registered and a certificate obtained which later got lost.</li>
+                </>
+             )}
+             {application.affidavitType !== 'Affidavit of Age Declaration' && (
+                <li>That my name was formerly <span className="font-bold">OLD NAME EXAMPLE</span> and I now wish to be known as <span className="font-bold uppercase">{user.fullName}</span>.</li>
+             )}
 
-          {/* Dynamic content based on affidavit type */}
-          <ol className="list-decimal list-inside space-y-4">
-            <li>That I am the deponent herein and by virtue of which I am conversant with the facts of this affidavit.</li>
-            {application.id === 'APP202407-001' && (
-                 <li>That my name was formerly <span className="font-bold">OLD NAME EXAMPLE</span> and I now wish to be known as <span className="font-bold">{user.fullName}</span>.</li>
-            )}
-            <li>That all my documents bearing my former name remain valid.</li>
-            <li>That I make this solemn declaration conscientiously believing the same to be true and correct and by virtue of the Oaths Act.</li>
+            <li>That this sworn Declaration is now required for official and record purposes.</li>
+            <li>That I make this solemn Declaration conscientiously believing the content to be true and correct and in accordance with the Oaths Act of 2004 (as amended).</li>
           </ol>
         </main>
         
         <footer className="mt-16">
             <div className="flex justify-between items-end">
-                <div className="w-1/3">
-                    <div className="relative w-28 h-28 border border-gray-400 flex items-center justify-center">
-                        <Image src={user.details.passportPhotoUrl} alt="Passport Photo" layout="fill" objectFit="cover" data-ai-hint="person face" />
-                        <span className="absolute -bottom-6 text-sm">Deponent&apos;s Passport</span>
-                    </div>
+                 <div className="w-1/3 text-center">
+                     {/* Intentionally left blank */}
                 </div>
 
                 <div className="w-1/3 text-center">
@@ -82,7 +81,7 @@ export function AffidavitDocument({ application, user }: AffidavitDocumentProps)
                     </div>
                 </div>
 
-                 <div className="w-1/3 text-center">
+                 <div className="w-1/3 text-center text-sm">
                     <p>Sworn to at the High Court Registry, Gombe</p>
                     <p>this <span className="font-bold">__{new Date().getDate()}__</span> day of <span className="font-bold">__{new Date().toLocaleString('default', { month: 'long' })}__</span>, <span className="font-bold">__{new Date().getFullYear()}__</span></p>
                 </div>
@@ -93,13 +92,6 @@ export function AffidavitDocument({ application, user }: AffidavitDocumentProps)
                     <p className="text-lg font-semibold">COMMISSIONER FOR OATHS</p>
                 </div>
             </div>
-            
-            <div className="absolute bottom-8 right-8">
-                <CourtSeal />
-            </div>
-             <div className="absolute bottom-8 left-8 text-xs text-gray-400">
-                Ref: {application.id}
-            </div>
         </footer>
       </div>
       <style jsx>{`
@@ -107,6 +99,11 @@ export function AffidavitDocument({ application, user }: AffidavitDocumentProps)
           width: 21cm;
           min-height: 29.7cm;
           box-sizing: border-box;
+        }
+        @media print {
+            body {
+                background-color: white !important;
+            }
         }
       `}</style>
     </div>
