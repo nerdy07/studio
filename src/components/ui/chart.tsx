@@ -254,7 +254,7 @@ const ChartTooltipContent = React.forwardRef<
     )
   }
 )
-ChartTooltipContent.displayName = "ChartTooltip"
+ChartTooltipContent.displayName = "ChartTooltipContent"
 
 const ChartLegend = RechartsPrimitive.Legend
 
@@ -355,6 +355,11 @@ function getPayloadConfigFromPayload(
     : config[key as keyof typeof config]
 }
 
+const Bar = RechartsPrimitive.Bar;
+const BarChart = RechartsPrimitive.BarChart;
+const XAxis = RechartsPrimitive.XAxis;
+const CartesianGrid = RechartsPrimitive.CartesianGrid;
+
 export {
   ChartContainer,
   ChartTooltip,
@@ -362,4 +367,8 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  Bar,
+  BarChart,
+  XAxis,
+  CartesianGrid,
 }
