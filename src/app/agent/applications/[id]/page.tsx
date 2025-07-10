@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { AffidavitDocument } from '@/components/affidavit-document';
 import { applications, userProfile } from '@/lib/data';
 import { Printer, ArrowLeft } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 export default function AgentApplicationDetailsPage() {
   const params = useParams();
@@ -24,12 +23,13 @@ export default function AgentApplicationDetailsPage() {
   }
 
   const handlePrint = () => {
-    window.print();
+    const printWindow = window.open(`/applications/${appId}/print`, '_blank');
+    printWindow?.focus();
   };
 
   return (
     <div className="space-y-6">
-       <div className="flex justify-between items-center no-print">
+       <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold">Application Details</h1>
             <div className="flex items-center gap-2">
                 <Button variant="outline" onClick={() => router.back()}>
@@ -43,11 +43,11 @@ export default function AgentApplicationDetailsPage() {
             </div>
         </div>
 
-        <div className="bg-gray-100 p-8 rounded-lg">
-             <AffidavitDocument application={application} user={userProfile} />
+        <div className="bg-gray-100 p-8 rounded-lg print-container">
+             <AffidavitDocument application={application} user={userProfile} isPrintMode={false} />
         </div>
       
-        <footer className="text-center text-xs text-muted-foreground mt-8 no-print">
+        <footer className="text-center text-xs text-muted-foreground mt-8">
             Powered by Century Information Systems. All rights Reserved
         </footer>
     </div>

@@ -1,5 +1,7 @@
 import type { Application } from '@/lib/data';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
 
 interface AffidavitDocumentProps {
   application: Application;
@@ -14,12 +16,16 @@ interface AffidavitDocumentProps {
       gender: string;
     }
   };
+  isPrintMode: boolean;
 }
 
 
-export function AffidavitDocument({ application, user }: AffidavitDocumentProps) {
+export function AffidavitDocument({ application, user, isPrintMode }: AffidavitDocumentProps) {
   return (
-    <div className="bg-white shadow-lg A4-size mx-auto p-8 sm:p-12 relative overflow-hidden font-serif text-black">
+    <div className={cn(
+      "bg-white font-serif text-black relative overflow-hidden",
+      isPrintMode ? "shadow-lg A4-size mx-auto p-8 sm:p-12" : "p-4 sm:p-8"
+    )}>
       <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10">
           <p className="text-[100px] sm:text-[150px] font-black text-gray-200 -rotate-45 tracking-widest select-none transform-gpu">
             VERIFIED

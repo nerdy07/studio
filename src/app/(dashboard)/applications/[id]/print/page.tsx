@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { AffidavitDocument } from '@/components/affidavit-document';
 import { applications, userProfile } from '@/lib/data';
 import { Printer, ArrowLeft } from 'lucide-react';
+import React from 'react';
 
 export default function PrintApplicationPage() {
   const params = useParams();
@@ -24,6 +25,11 @@ export default function PrintApplicationPage() {
   const handlePrint = () => {
     window.print();
   };
+  
+  React.useEffect(() => {
+    // Automatically trigger print dialog when component mounts
+    // setTimeout(handlePrint, 1000);
+  }, []);
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 sm:p-8">
@@ -31,7 +37,7 @@ export default function PrintApplicationPage() {
         <div className="bg-white p-4 rounded-t-lg shadow-md no-print flex justify-between items-center">
             <h1 className="text-2xl font-bold text-primary">Print Affidavit</h1>
             <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={() => router.back()} className="w-full">
+                <Button variant="outline" onClick={() => router.back()}>
                     <ArrowLeft className="mr-2 h-4 w-4"/>
                     Go Back
                 </Button>
@@ -43,7 +49,7 @@ export default function PrintApplicationPage() {
         </div>
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full">
-              <AffidavitDocument application={application} user={userProfile} />
+              <AffidavitDocument application={application} user={userProfile} isPrintMode={true}/>
           </div>
         </div>
         <footer className="text-center text-xs text-muted-foreground mt-8 no-print">
