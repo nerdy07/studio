@@ -87,7 +87,7 @@ export default function Home() {
                 </div>
 
                 <div className="relative">
-                    <Card className="shadow-2xl hover:shadow-primary/20 transition-shadow duration-500 bg-card/80 backdrop-blur-md border-primary/20 transform-gpu rotate-3 hover:rotate-1">
+                    <Card className="shadow-2xl hover:shadow-primary/20 transition-shadow duration-500 bg-card/80 backdrop-blur-md border-primary/20">
                         <CardHeader>
                             <CardTitle className="text-primary">E-Affidavit Application</CardTitle>
                         </CardHeader>
