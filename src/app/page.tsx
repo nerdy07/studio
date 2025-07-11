@@ -83,7 +83,7 @@ export default function Home() {
                         Simplified and Secure.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                        The official Gombe State Judiciary platform for seamless and secure online affidavit applications. Built for convenience, speed, and trust.
+                        The official Zamfara State Judiciary platform for seamless and secure online affidavit applications. Built for convenience, speed, and trust.
                     </p>
                     <div className="mt-8 flex gap-4">
                         <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg transform hover:scale-105 transition-transform">
@@ -171,7 +171,7 @@ export default function Home() {
       <footer className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                <p className="text-sm text-center md:text-left">&copy; {new Date().getFullYear()} Gombe State Judiciary. All Rights Reserved.</p>
+                <p className="text-sm text-center md:text-left">&copy; {new Date().getFullYear()} Zamfara State Judiciary. All Rights Reserved.</p>
                 <div className="flex items-center gap-6">
                     <Link href="#" className="text-sm hover:underline">Terms of Service</Link>
                     <Link href="#" className="text-sm hover:underline">Privacy Policy</Link>

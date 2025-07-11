@@ -4,8 +4,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'GombeJudiciary e-Affidavit',
-  description: 'ECMS Affidavit System for the Gombe State Judiciary',
+  title: 'ZamfaraJudiciary e-Affidavit',
+  description: 'ECMS Affidavit System for the Zamfara State Judiciary',
 };
 
 export default function RootLayout({

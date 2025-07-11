@@ -1,3 +1,4 @@
+
 import type { Application } from '@/lib/data';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -40,9 +41,9 @@ export function AffidavitDocument({ application, user, isPrintMode }: AffidavitD
       <div className="relative z-10">
         <header className="text-center mb-8">
             <div className="flex justify-between items-center mb-4">
-                 <Image src="https://placehold.co/100x100.png" alt="Gombe State High Court Logo" width={80} height={80} data-ai-hint="court seal"/>
+                 <Image src="https://placehold.co/100x100.png" alt="Zamfara State High Court Logo" width={80} height={80} data-ai-hint="court seal"/>
                  <div className="text-center">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-primary">GOMBE STATE</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-primary">ZAMFARA STATE</h1>
                  </div>
                  <Image src="https://placehold.co/100x100.png" alt="Nigerian Coat of Arms" width={80} height={80} data-ai-hint="coat of arms" />
             </div>
@@ -93,7 +94,7 @@ export function AffidavitDocument({ application, user, isPrintMode }: AffidavitD
                 </div>
 
                  <div className="w-1/3 text-center text-sm">
-                    <p>Sworn to at the High Court Registry, Gombe</p>
+                    <p>Sworn to at the High Court Registry, Zamfara</p>
                     <p>this <span className="font-bold">__{day}__</span> day of <span className="font-bold">__{month}__</span>, <span className="font-bold">__{year}__</span></p>
                 </div>
             </div>

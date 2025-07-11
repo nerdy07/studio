@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { AffidavitDocument } from '@/components/affidavit-document';
 import { applications, userProfile } from '@/lib/data';
 import { Printer, ArrowLeft } from 'lucide-react';
+import AgentLayout from '../../layout';
 
 export default function AgentApplicationDetailsPage() {
   const params = useParams();
@@ -28,28 +29,30 @@ export default function AgentApplicationDetailsPage() {
   };
 
   return (
-    <div className="space-y-6">
-       <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Application Details</h1>
-            <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={() => router.back()}>
-                    <ArrowLeft className="mr-2 h-4 w-4"/>
-                    Back to Dashboard
-                </Button>
-                <Button onClick={handlePrint}>
-                    <Printer className="mr-2 h-4 w-4" />
-                    Print Affidavit
-                </Button>
+    <AgentLayout>
+        <div className="space-y-6">
+        <div className="flex justify-between items-center">
+                <h1 className="text-2xl font-bold">Application Details</h1>
+                <div className="flex items-center gap-2">
+                    <Button variant="outline" onClick={() => router.back()}>
+                        <ArrowLeft className="mr-2 h-4 w-4"/>
+                        Back to Dashboard
+                    </Button>
+                    <Button onClick={handlePrint}>
+                        <Printer className="mr-2 h-4 w-4" />
+                        Print Affidavit
+                    </Button>
+                </div>
             </div>
-        </div>
 
-        <div className="bg-gray-100 p-8 rounded-lg print-container">
-             <AffidavitDocument application={application} user={userProfile} isPrintMode={false} />
+            <div className="bg-gray-100 p-8 rounded-lg print-container">
+                <AffidavitDocument application={application} user={userProfile} isPrintMode={false} />
+            </div>
+        
+            <footer className="text-center text-xs text-muted-foreground mt-8">
+                Powered by echobitstech. All rights Reserved
+            </footer>
         </div>
-      
-        <footer className="text-center text-xs text-muted-foreground mt-8">
-            Powered by Century Information Systems. All rights Reserved
-        </footer>
-    </div>
+    </AgentLayout>
   );
 }

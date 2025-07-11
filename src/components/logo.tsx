@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -30,7 +31,7 @@ export function Logo() {
       </div>
       <div className={`${textColorClass} overflow-hidden transition-all duration-200 ease-in-out group-data-[state=collapsed]:w-0 group-data-[state=collapsed]:opacity-0`}>
         <span className="font-bold text-sm font-headline uppercase tracking-wider whitespace-nowrap">
-          Gombe Judiciary
+          Zamfara Judiciary
         </span>
         <br />
         <span className="text-xs font-headline uppercase tracking-wider -mt-2 block whitespace-nowrap">

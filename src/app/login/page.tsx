@@ -30,7 +30,7 @@ export default function LoginPage() {
      <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden">
         <Image
             src="https://placehold.co/1920x1080.png"
-            alt="Gombe State Judiciary Building"
+            alt="Zamfara State Judiciary Building"
             fill
             className="absolute inset-0 z-0 opacity-20 object-cover"
             data-ai-hint="courthouse building"

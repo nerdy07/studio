@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
@@ -53,7 +54,7 @@ export default function PrintApplicationPage() {
           </div>
         </div>
         <footer className="text-center text-xs text-muted-foreground mt-8 no-print">
-            Powered by Century Information Systems. All rights Reserved
+            Powered by echobitstech. All rights Reserved
         </footer>
       </div>
     </div>
