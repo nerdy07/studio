@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LogIn, UserPlus, ArrowRight, CheckCircle, FileText } from 'lucide-react';
+import { LogIn, UserPlus, ArrowRight, CheckCircle, FileText, ShieldCheck, Landmark, Users } from 'lucide-react';
 import Image from 'next/image';
 import { Logo } from '@/components/logo';
 
@@ -34,13 +34,13 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Button asChild variant="ghost" className="text-primary hover:bg-primary/10">
               <Link href="/login">
-                <LogIn className="mr-2" />
+                <LogIn />
                 Login
               </Link>
             </Button>
             <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/signup">
-                <UserPlus className="mr-2" />
+                <UserPlus />
                 Register
               </Link>
             </Button>
@@ -156,12 +156,12 @@ export default function Home() {
                         description="A written Statement in which a deponent swears oath or affirms his/her Statement."
                     />
                     <FeatureCard
-                        icon={<CheckCircle className="w-6 h-6" />}
+                        icon={<ShieldCheck className="w-6 h-6" />}
                         title="E-Verification"
                         description="Verify all affidavits quickly and securely online, ensuring authenticity and compliance."
                     />
                     <FeatureCard
-                        icon={<UserPlus className="w-6 h-6" />}
+                        icon={<Users className="w-6 h-6" />}
                         title="Accredited Agents"
                         description="Authorized individuals to submit requests to the court on your behalf."
                     />
@@ -171,8 +171,14 @@ export default function Home() {
       </main>
 
       <footer className="bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
-            <p>&copy; {new Date().getFullYear()} Gombe State Judiciary. Powered by Century Information Systems. All Rights Reserved.</p>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                <p className="text-sm text-center md:text-left">&copy; {new Date().getFullYear()} Gombe State Judiciary. Powered by Century Information Systems. All Rights Reserved.</p>
+                <div className="flex items-center gap-6">
+                    <Link href="#" className="text-sm hover:underline">Terms of Service</Link>
+                    <Link href="#" className="text-sm hover:underline">Privacy Policy</Link>
+                </div>
+            </div>
         </div>
       </footer>
     </div>
