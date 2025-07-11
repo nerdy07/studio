@@ -3,31 +3,44 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LogIn, UserPlus, ArrowRight, CheckCircle, FileText, ShieldCheck, Landmark, Users } from 'lucide-react';
+import { LogIn, UserPlus, ArrowRight, CheckCircle, FileText, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import { Logo } from '@/components/logo';
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
     return (
-        <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 border border-primary/10">
-            <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg text-primary">
-                    {icon}
-                </div>
-                <div>
-                    <h3 className="text-lg font-bold text-primary">{title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{description}</p>
+        <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg shadow-sm hover:shadow-primary/10 transition-shadow duration-300 border border-primary/10 relative overflow-hidden">
+            <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-accent/10 rounded-full blur-2xl"></div>
+            <div className="relative z-10">
+                <div className="flex items-center gap-4">
+                    <div className="p-3 bg-primary/10 rounded-lg text-primary">
+                        {icon}
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-bold text-primary">{title}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">{description}</p>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
+const HowItWorksStep = ({ number, title, description }: { number: string, title: string, description: string }) => {
+    return (
+        <div className="flex flex-col items-center text-center">
+             <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-2xl mb-4 border-2 border-primary/20">
+                {number}
+             </div>
+             <h3 className="text-xl font-bold text-primary mb-2">{title}</h3>
+             <p className="text-muted-foreground max-w-xs">{description}</p>
+        </div>
+    )
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
        <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="container mx-auto flex justify-between items-center p-4">
           <Logo />
@@ -49,12 +62,12 @@ export default function Home() {
       </header>
       
       <main className="flex-grow">
-        <section className="relative py-20 md:py-32 overflow-hidden">
+        <section className="relative py-20 md:py-32 overflow-hidden border-b">
              <div className="absolute inset-0 z-0 opacity-5">
                 <Image
                     src="https://placehold.co/1920x1080.png"
                     alt="Abstract background"
-                    layout="fill"
+                    fill
                     objectFit="cover"
                     className="absolute inset-0"
                     data-ai-hint="abstract pattern"
@@ -67,10 +80,10 @@ export default function Home() {
                 <div className="text-left">
                      <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-primary">
                         Modern Affidavits, <br />
-                        Simplified.
+                        Simplified and Secure.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                        A seamless and secure platform to apply for, process, and obtain official affidavits online. Built for convenience, speed, and trust.
+                        The official Gombe State Judiciary platform for seamless and secure online affidavit applications. Built for convenience, speed, and trust.
                     </p>
                     <div className="mt-8 flex gap-4">
                         <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg transform hover:scale-105 transition-transform">
@@ -86,34 +99,29 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="relative">
-                    <Card className="shadow-2xl hover:shadow-primary/20 transition-shadow duration-500 bg-card/80 backdrop-blur-md border-primary/20">
-                        <CardHeader>
-                            <CardTitle className="text-primary">E-Affidavit Application</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="flex items-center gap-4 p-3 bg-background rounded-lg border">
-                                <Image src="https://placehold.co/40x40.png" alt="User Avatar" width={40} height={40} className="rounded-full" data-ai-hint="person avatar"/>
-                                <div>
-                                    <p className="font-semibold text-sm">Musa Adekunle</p>
-                                    <p className="text-xs text-muted-foreground">Affidavit for Change of Name</p>
-                                </div>
+                <div className="relative hidden md:block">
+                    <div className="bg-card/50 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-primary/20 transform-gpu rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div className="flex items-center gap-4 p-3 bg-background rounded-lg border">
+                            <Image src="https://placehold.co/40x40.png" alt="User Avatar" width={40} height={40} className="rounded-full" data-ai-hint="person avatar"/>
+                            <div>
+                                <p className="font-semibold text-sm">Musa Adekunle</p>
+                                <p className="text-xs text-muted-foreground">Affidavit for Change of Name</p>
                             </div>
-                             <div className="flex items-center gap-4 p-3 bg-green-500/10 text-green-700 rounded-lg border border-green-500/20">
-                                <CheckCircle className="w-6 h-6"/>
-                                <div>
-                                    <p className="font-semibold text-sm">Status: Approved</p>
-                                    <p className="text-xs">Your document is ready for download.</p>
-                                </div>
+                        </div>
+                         <div className="flex items-center gap-4 p-3 mt-4 bg-green-500/10 text-green-700 rounded-lg border border-green-500/20">
+                            <CheckCircle className="w-6 h-6"/>
+                            <div>
+                                <p className="font-semibold text-sm">Status: Approved</p>
+                                <p className="text-xs">Your document is ready for download.</p>
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </div>
              </div>
           </div>
         </section>
 
-        <section id="how-it-works" className="py-24 bg-background">
+        <section id="how-it-works" className="py-24 bg-primary/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                  <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">A Simple, Secure Process</h2>
@@ -122,31 +130,19 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
-                    <div className="flex flex-col items-center">
-                         <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-2xl mb-4 border-2 border-primary/20">1</div>
-                         <h3 className="text-xl font-bold text-primary mb-2">Create Account</h3>
-                         <p className="text-muted-foreground">Sign up with your details to create a secure personal account.</p>
-                    </div>
-                     <div className="flex flex-col items-center">
-                         <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-2xl mb-4 border-2 border-primary/20">2</div>
-                         <h3 className="text-xl font-bold text-primary mb-2">Fill Application</h3>
-                         <p className="text-muted-foreground">Select the affidavit type you need and fill in the required information accurately.</p>
-                    </div>
-                     <div className="flex flex-col items-center">
-                         <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-2xl mb-4 border-2 border-primary/20">3</div>
-                         <h3 className="text-xl font-bold text-primary mb-2">Download & Print</h3>
-                         <p className="text-muted-foreground">Once approved, make your payment and instantly download the official document.</p>
-                    </div>
+                    <HowItWorksStep number="1" title="Create Account" description="Sign up with your details to create a secure personal account." />
+                    <HowItWorksStep number="2" title="Fill Application" description="Select the affidavit type you need and fill in the required information accurately." />
+                    <HowItWorksStep number="3" title="Download & Print" description="Once approved, make your payment and instantly download the official document." />
                 </div>
             </div>
         </section>
 
-         <section className="py-24 bg-primary/5">
+         <section className="py-24 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                  <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">Everything You Need</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">Core Services</h2>
                     <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                        Our platform provides secure and efficient digital solutions for all your needs.
+                        Secure and efficient digital solutions for all your legal document needs.
                     </p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -161,7 +157,9 @@ export default function Home() {
                         description="Verify all affidavits quickly and securely online, ensuring authenticity and compliance."
                     />
                     <FeatureCard
-                        icon={<Users className="w-6 h-6" />}
+                        icon={
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        }
                         title="Accredited Agents"
                         description="Authorized individuals to submit requests to the court on your behalf."
                     />
@@ -173,7 +171,7 @@ export default function Home() {
       <footer className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                <p className="text-sm text-center md:text-left">&copy; {new Date().getFullYear()} Gombe State Judiciary. Powered by Century Information Systems. All Rights Reserved.</p>
+                <p className="text-sm text-center md:text-left">&copy; {new Date().getFullYear()} Gombe State Judiciary. All Rights Reserved.</p>
                 <div className="flex items-center gap-6">
                     <Link href="#" className="text-sm hover:underline">Terms of Service</Link>
                     <Link href="#" className="text-sm hover:underline">Privacy Policy</Link>
