@@ -170,11 +170,11 @@ export default function Home() {
 
       <footer className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="text-sm text-center md:text-left">&copy; {new Date().getFullYear()} Zamfara State Judiciary. All Rights Reserved.</p>
-            </div>
-             <div className="text-center text-sm mt-4 text-primary-foreground/80">
-                Powered by <a href="https://echobitstech.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">echobitstech</a>
+                <p className="text-sm text-center md:text-right text-primary-foreground/80">
+                  Powered by <a href="https://echobitstech.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">echobitstech</a>
+                </p>
             </div>
         </div>
       </footer>
