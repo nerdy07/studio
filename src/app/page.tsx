@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LogIn, UserPlus, ArrowRight, CheckCircle, Edit3, FileText } from 'lucide-react';
+import { LogIn, UserPlus, ArrowRight, CheckCircle, FileText } from 'lucide-react';
 import Image from 'next/image';
 import { Logo } from '@/components/logo';
 
