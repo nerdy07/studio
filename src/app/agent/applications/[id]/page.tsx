@@ -17,9 +17,11 @@ export default function AgentApplicationDetailsPage() {
 
   if (!application) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        Application not found.
-      </div>
+      <AgentLayout>
+        <div className="flex items-center justify-center h-full">
+          Application not found.
+        </div>
+      </AgentLayout>
     );
   }
 
@@ -50,7 +52,7 @@ export default function AgentApplicationDetailsPage() {
             </div>
         
             <footer className="text-center text-xs text-muted-foreground mt-8">
-                Powered by echobitstech. All rights Reserved
+                Powered by <a href="https://echobitstech.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">echobitstech</a>. All rights Reserved
             </footer>
         </div>
     </AgentLayout>

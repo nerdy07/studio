@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
 
                 <div className="relative hidden md:block">
-                    <div className="bg-card/50 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-primary/20 transform-gpu rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <div className="bg-card/50 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-primary/20 transform-gpu hover:rotate-0 transition-transform duration-500">
                         <div className="flex items-center gap-4 p-3 bg-background rounded-lg border">
                             <Image src="https://placehold.co/40x40.png" alt="User Avatar" width={40} height={40} className="rounded-full" data-ai-hint="person avatar"/>
                             <div>
@@ -176,6 +176,9 @@ export default function Home() {
                     <Link href="#" className="text-sm hover:underline">Terms of Service</Link>
                     <Link href="#" className="text-sm hover:underline">Privacy Policy</Link>
                 </div>
+            </div>
+             <div className="text-center text-sm mt-4 text-primary-foreground/80">
+                Powered by <a href="https://echobitstech.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">echobitstech</a>
             </div>
         </div>
       </footer>

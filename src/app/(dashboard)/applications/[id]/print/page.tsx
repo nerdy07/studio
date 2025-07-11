@@ -54,7 +54,7 @@ export default function PrintApplicationPage() {
           </div>
         </div>
         <footer className="text-center text-xs text-muted-foreground mt-8 no-print">
-            Powered by echobitstech. All rights Reserved
+            Powered by <a href="https://echobitstech.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">echobitstech</a>. All rights Reserved
         </footer>
       </div>
     </div>
