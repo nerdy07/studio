@@ -11,10 +11,7 @@ import { motion } from 'framer-motion';
 const FeatureCard = ({ icon, title, description, index }: { icon: React.ReactNode, title: string, description: string, index: number }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
+            variants={fadeIn}
             className="bg-card/60 backdrop-blur-sm p-6 rounded-lg shadow-sm hover:shadow-primary/10 transition-shadow duration-300 border border-primary/10 relative overflow-hidden"
         >
             <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-accent/10 rounded-full blur-2xl"></div>
@@ -33,13 +30,10 @@ const FeatureCard = ({ icon, title, description, index }: { icon: React.ReactNod
     );
 };
 
-const HowItWorksStep = ({ number, title, description, index }: { number: string, title: string, description: string, index: number }) => {
+const HowItWorksStep = ({ number, title, description }: { number: string, title: string, description: string }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
+            variants={fadeIn}
             className="flex flex-col items-center text-center"
         >
              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-2xl mb-4 border-2 border-primary/20">
@@ -51,45 +45,27 @@ const HowItWorksStep = ({ number, title, description, index }: { number: string,
     )
 }
 
-const FADE_IN_ANIMATION_SETTINGS = {
-  initial: { opacity: 0, y: 10 },
-  animate: "animate",
-  exit: { opacity: 0, y: 10 },
-  whileInView: "animate",
-  viewport: { once: true },
-};
-
-const motion_initial = {
-  initial: "initial",
-  variants: {
-    initial: {
-      opacity: 0,
-      y: 10,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
     },
   },
-  ...FADE_IN_ANIMATION_SETTINGS
 };
 
-const motion_stagger = {
-  initial: "initial",
-  variants: {
-    initial: {},
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
+const fadeIn = {
+  initial: {
+    opacity: 0,
+    y: 10,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
     },
   },
-  ...FADE_IN_ANIMATION_SETTINGS
 };
-
 
 export default function Home() {
   return (
@@ -129,18 +105,20 @@ export default function Home() {
             </div>
           
           <motion.div 
-            {...motion_stagger}
+            initial="initial"
+            animate="animate"
+            variants={stagger}
             className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
              <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-left">
-                     <motion.h1 {...motion_initial} className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-primary">
+                     <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-primary">
                         Judicial Services, <br />
                         Simplified and Secure.
                     </motion.h1>
-                    <motion.p {...motion_initial} className="mt-6 max-w-xl text-lg text-muted-foreground">
+                    <motion.p variants={fadeIn} className="mt-6 max-w-xl text-lg text-muted-foreground">
                         The official Zamfara State Judiciary platform for seamless and secure online legal services. Built for convenience, speed, and trust.
                     </motion.p>
-                    <motion.div {...motion_initial} className="mt-8 flex gap-4">
+                    <motion.div variants={fadeIn} className="mt-8 flex gap-4">
                         <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg transform hover:scale-105 transition-transform shimmer">
                             <Link href="/signup">
                                 Get Started <ArrowRight className="ml-2" />
@@ -154,7 +132,7 @@ export default function Home() {
                     </motion.div>
                 </div>
 
-                <motion.div {...motion_initial} className="relative hidden md:block">
+                <motion.div variants={fadeIn} className="relative hidden md:block">
                     <div className="bg-card/50 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-primary/20 transform-gpu hover:rotate-0 transition-transform duration-500">
                         <div className="flex items-center gap-4 p-3 bg-background rounded-lg border">
                             <Image src="https://placehold.co/40x40.png" alt="User Avatar" width={40} height={40} className="rounded-full" data-ai-hint="person avatar"/>
@@ -177,29 +155,41 @@ export default function Home() {
         </section>
 
         <section id="how-it-works" className="py-24 bg-primary/5">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                 <motion.div {...motion_stagger} className="text-center mb-16">
-                    <motion.h2 {...motion_initial} className="text-3xl md:text-4xl font-bold font-headline text-primary">A Simple, Secure Process</motion.h2>
-                    <motion.p {...motion_initial} className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            <motion.div 
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.5 }}
+                variants={stagger}
+                className="container mx-auto px-4 sm:px-6 lg:px-8"
+            >
+                 <div className="text-center mb-16">
+                    <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold font-headline text-primary">A Simple, Secure Process</motion.h2>
+                    <motion.p variants={fadeIn} className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                         Obtain your official legal documents in just a few easy steps.
                     </motion.p>
-                </motion.div>
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                    <HowItWorksStep index={1} number="1" title="Create Account" description="Sign up with your details to create a secure personal account." />
-                    <HowItWorksStep index={2} number="2" title="Submit Request" description="Select the document type you need and fill in the required information accurately." />
-                    <HowItWorksStep index={3} number="3" title="Download & Print" description="Once approved, make your payment and instantly download the official document." />
                 </div>
-            </div>
+                <div className="grid md:grid-cols-3 gap-8 text-center">
+                    <HowItWorksStep number="1" title="Create Account" description="Sign up with your details to create a secure personal account." />
+                    <HowItWorksStep number="2" title="Submit Request" description="Select the document type you need and fill in the required information accurately." />
+                    <HowItWorksStep number="3" title="Download & Print" description="Once approved, make your payment and instantly download the official document." />
+                </div>
+            </motion.div>
         </section>
 
          <section className="py-24 bg-background">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                 <motion.div {...motion_stagger} className="text-center mb-16">
-                    <motion.h2 {...motion_initial} className="text-3xl md:text-4xl font-bold font-headline text-primary">Core Services</motion.h2>
-                    <motion.p {...motion_initial} className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            <motion.div 
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.5 }}
+                variants={stagger}
+                className="container mx-auto px-4 sm:px-6 lg:px-8"
+            >
+                 <div className="text-center mb-16">
+                    <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold font-headline text-primary">Core Services</motion.h2>
+                    <motion.p variants={fadeIn} className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                         Secure and efficient digital solutions for all your legal document needs.
                     </motion.p>
-                </motion.div>
+                </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <FeatureCard
                         index={1}
@@ -222,7 +212,7 @@ export default function Home() {
                         description="Authorized individuals to submit requests to the court on your behalf."
                     />
                 </div>
-            </div>
+            </motion.div>
         </section>
       </main>
 
