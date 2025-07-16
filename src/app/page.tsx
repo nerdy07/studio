@@ -79,11 +79,11 @@ export default function Home() {
              <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-left">
                      <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-primary">
-                        Modern Affidavits, <br />
+                        Judicial Services, <br />
                         Simplified and Secure.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                        The official Zamfara State Judiciary platform for seamless and secure online affidavit applications. Built for convenience, speed, and trust.
+                        The official Zamfara State Judiciary platform for seamless and secure online legal services. Built for convenience, speed, and trust.
                     </p>
                     <div className="mt-8 flex gap-4">
                         <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg transform hover:scale-105 transition-transform">
@@ -105,7 +105,7 @@ export default function Home() {
                             <Image src="https://placehold.co/40x40.png" alt="User Avatar" width={40} height={40} className="rounded-full" data-ai-hint="person avatar"/>
                             <div>
                                 <p className="font-semibold text-sm">Musa Adekunle</p>
-                                <p className="text-xs text-muted-foreground">Affidavit for Change of Name</p>
+                                <p className="text-xs text-muted-foreground">Legal Document Request</p>
                             </div>
                         </div>
                          <div className="flex items-center gap-4 p-3 mt-4 bg-green-500/10 text-green-700 rounded-lg border border-green-500/20">
@@ -126,12 +126,12 @@ export default function Home() {
                  <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">A Simple, Secure Process</h2>
                     <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                        Obtain your official affidavit in just three easy steps.
+                        Obtain your official legal documents in just a few easy steps.
                     </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     <HowItWorksStep number="1" title="Create Account" description="Sign up with your details to create a secure personal account." />
-                    <HowItWorksStep number="2" title="Fill Application" description="Select the affidavit type you need and fill in the required information accurately." />
+                    <HowItWorksStep number="2" title="Submit Request" description="Select the document type you need and fill in the required information accurately." />
                     <HowItWorksStep number="3" title="Download & Print" description="Once approved, make your payment and instantly download the official document." />
                 </div>
             </div>
@@ -148,13 +148,13 @@ export default function Home() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <FeatureCard
                         icon={<FileText className="w-6 h-6" />}
-                        title="E-Affidavit"
-                        description="A written Statement in which a deponent swears oath or affirms his/her Statement."
+                        title="E-Filing"
+                        description="Submit legal documents electronically through our secure portal."
                     />
                     <FeatureCard
                         icon={<ShieldCheck className="w-6 h-6" />}
                         title="E-Verification"
-                        description="Verify all affidavits quickly and securely online, ensuring authenticity and compliance."
+                        description="Verify documents quickly and securely online, ensuring authenticity and compliance."
                     />
                     <FeatureCard
                         icon={
