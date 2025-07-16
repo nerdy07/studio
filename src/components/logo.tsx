@@ -17,7 +17,7 @@ export function Logo() {
     inSidebar = false;
   }
 
-  const textColorClass = inSidebar ? 'text-sidebar-foreground' : 'text-white';
+  const textColorClass = inSidebar ? 'text-sidebar-foreground' : 'text-foreground';
 
   return (
     <Link
