@@ -37,7 +37,7 @@ export function Logo() {
           Zamfara Judiciary
         </span>
         <br />
-        <span className="text-xs font-headline uppercase tracking-wider -mt-2 block whitespace-nowrap">
+        <span className="text-xs font-headline uppercase tracking-wider -mt-1 block whitespace-nowrap">
           e-Affidavit System
         </span>
       </div>
