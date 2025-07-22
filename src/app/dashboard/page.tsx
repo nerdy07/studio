@@ -31,6 +31,7 @@ import { applications, userProfile } from "@/lib/data";
 import { useState } from "react";
 import { ProfileCompletionDialog } from "@/components/profile-completion-dialog";
 import { Input } from "@/components/ui/input";
+import StatusBadge from "@/components/ui/StatusBadge";
 
 const StatCard = ({
   title,
@@ -198,7 +199,10 @@ export default function DashboardPage() {
             <CardContent>
               <div className="space-y-4">
                 {applications.slice(0, 3).map((app) => (
-                  <div key={app.id} className="flex items-center">
+                  <div
+                    key={app.id}
+                    className="flex items-center gap-4 p-3 rounded-md border bg-card shadow-sm"
+                  >
                     <Avatar className="h-9 w-9">
                       <AvatarImage
                         src={`https://placehold.co/36x36/EBF5FF/1D4ED8?text=${userProfile.fullName
@@ -206,7 +210,6 @@ export default function DashboardPage() {
                           .map((n) => n[0])
                           .join("")}`}
                         alt="Avatar"
-                        data-ai-hint="person avatar"
                       />
                       <AvatarFallback>
                         {userProfile.fullName
@@ -215,13 +218,17 @@ export default function DashboardPage() {
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">
+
+                    <div className="flex flex-col flex-1">
+                      <p className="text-[12px] font-semibold text-foreground">
                         {app.affidavitType}
                       </p>
-                      <p className="text-sm text-muted-foreground">{app.id}</p>
+                      <p className="text-xs text-muted-foreground">
+                        ID: {app.id}
+                      </p>
                     </div>
-                    <div className="ml-auto font-medium">{app.status}</div>
+
+                    <StatusBadge status={app.status} />
                   </div>
                 ))}
               </div>
