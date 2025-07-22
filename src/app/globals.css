@@ -1,10 +1,9 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 @layer base {
@@ -90,7 +89,7 @@ body {
   }
 
   .shimmer::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
@@ -113,4 +112,14 @@ body {
       transform: translateX(50%);
     }
   }
+}
+
+/* globals.css */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
