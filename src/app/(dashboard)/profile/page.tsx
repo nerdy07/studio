@@ -67,19 +67,19 @@ export default function ProfilePage() {
         {/* Left Panel */}
         <div
           className="relative hidden md:flex flex-col justify-between bg-cover bg-center text-white p-10"
-          style={{ backgroundImage: "url('/assets/law-and-justice.webp')" }}
+          style={{ backgroundImage: "url('/assets/user.webp')" }}
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50 z-0 rounded-l-2xl"></div>
+          <div className="absolute inset-0 bg-black/20 z-0 rounded-l-2xl"></div>
 
           {/* Content */}
           <div className="relative z-10 flex flex-col justify-between h-full">
             <Logo />
-            <div className="space-y-4 mt-auto">
+            <div className="space-y-4 mt-auto text-foreground">
               <blockquote className="text-lg font-semibold leading-snug">
                 Judicial Services, Simplified and Secure.
               </blockquote>
-              <p className="text-sm text-white/80">
+              <p className="text-sm text-black/80">
                 The official Zamfara State Judiciary platform for seamless and
                 secure online legal services. Built for convenience, speed, and
                 trust.

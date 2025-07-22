@@ -60,11 +60,11 @@ const HowItWorksStep = ({
       variants={fadeIn}
       className="flex flex-col items-center text-center"
     >
-      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-2xl mb-4 border-2 border-primary/20">
+      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-bold text-sm md:text-2xl mb-4 border-2 border-primary/20">
         {number}
       </div>
-      <h3 className="text-xl font-bold text-primary mb-2">{title}</h3>
-      <p className="max-sm:hidden text-muted-foreground max-w-xs">
+      <h3 className=" md:text-xl font-bold text-primary mb-2">{title}</h3>
+      <p className="max-sm:hidden  text-muted-foreground max-w-xs">
         {description}
       </p>
     </motion.div>
@@ -324,11 +324,11 @@ export default function Home() {
       <footer className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-center md:text-left">
+            <p className="text-[12px] md:text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} Zamfara State Judiciary. All
               Rights Reserved.
             </p>
-            <p className="text-sm text-center md:text-right text-primary-foreground/80">
+            <p className="text-[11px] md:text-sm text-center md:text-right text-primary-foreground/80">
               Powered by{" "}
               <a
                 href="https://echobitstech.com"
