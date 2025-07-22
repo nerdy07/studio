@@ -31,7 +31,7 @@ export function Logo() {
         <Scale className="h-6 w-6" />
       </div>
       <div
-        className={`${textColorClass} overflow-hidden transition-all duration-200 ease-in-out group-data-[state=collapsed]:w-0 group-data-[state=collapsed]:opacity-0 max-sm:hidden`}
+        className={`${textColorClass} text-[#fff] overflow-hidden transition-all duration-200 ease-in-out group-data-[state=collapsed]:w-0 group-data-[state=collapsed]:opacity-0 max-sm:hidden`}
       >
         <span className="font-bold text-sm font-headline uppercase tracking-wider whitespace-nowrap">
           Zamfara Judiciary
