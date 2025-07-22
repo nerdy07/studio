@@ -1,10 +1,18 @@
+"use client";
 
-'use client';
-
-import { DashboardHeader } from '@/components/dashboard-header';
-import { Sidebar, SidebarContent, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from '@/components/ui/sidebar';
-import { Home, FileText, User } from 'lucide-react';
-import { Logo } from '@/components/logo';
+import { DashboardHeader } from "@/components/dashboard-header";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
+import { Home, FileText, User } from "lucide-react";
+import { Logo } from "@/components/logo";
 
 export default function DashboardLayout({
   children,
@@ -16,7 +24,7 @@ export default function DashboardLayout({
       <div className="flex min-h-screen bg-background">
         <Sidebar>
           <SidebarHeader>
-             <Logo />
+            <Logo />
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu>
@@ -44,9 +52,7 @@ export default function DashboardLayout({
         <div className="flex flex-col flex-1">
           <DashboardHeader />
           <SidebarInset>
-            <div className="p-4 sm:p-6 lg:p-8">
-              {children}
-            </div>
+            <div className="p-4 sm:p-6 lg:p-8">{children}</div>
           </SidebarInset>
         </div>
       </div>
