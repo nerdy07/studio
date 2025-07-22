@@ -64,7 +64,9 @@ const HowItWorksStep = ({
         {number}
       </div>
       <h3 className="text-xl font-bold text-primary mb-2">{title}</h3>
-      <p className="text-muted-foreground max-w-xs">{description}</p>
+      <p className="max-sm:hidden text-muted-foreground max-w-xs">
+        {description}
+      </p>
     </motion.div>
   );
 };
@@ -210,7 +212,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="how-it-works" className="py-24 bg-primary/5">
+        <section id="how-it-works" className="py-10 md:py-24 bg-primary/5">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -221,18 +223,18 @@ export default function Home() {
             <div className="text-center mb-16">
               <motion.h2
                 variants={fadeIn}
-                className="text-3xl md:text-4xl font-bold font-headline text-primary"
+                className="text-xl md:text-4xl font-bold font-headline text-primary"
               >
                 A Simple, Secure Process
               </motion.h2>
               <motion.p
                 variants={fadeIn}
-                className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground"
+                className="mt-4 max-w-2xl mx-auto text-sm md:text-lg text-muted-foreground"
               >
                 Obtain your official legal documents in just a few easy steps.
               </motion.p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
               <HowItWorksStep
                 number="1"
                 title="Create Account"
@@ -243,11 +245,13 @@ export default function Home() {
                 title="Submit Request"
                 description="Select the document type you need and fill in the required information accurately."
               />
-              <HowItWorksStep
-                number="3"
-                title="Download & Print"
-                description="Once approved, make your payment and instantly download the official document."
-              />
+              <div className="col-span-2 md:col-span-1 flex justify-center">
+                <HowItWorksStep
+                  number="3"
+                  title="Download & Print"
+                  description="Once approved, make your payment and instantly download the official document."
+                />
+              </div>
             </div>
           </motion.div>
         </section>
@@ -260,16 +264,16 @@ export default function Home() {
             variants={stagger}
             className="container mx-auto px-4 sm:px-6 lg:px-8"
           >
-            <div className="text-center mb-16">
+            <div className="md:text-center mb-16">
               <motion.h2
                 variants={fadeIn}
-                className="text-3xl md:text-4xl font-bold font-headline text-primary"
+                className="text-xl md:text-4xl font-bold font-headline text-primary"
               >
                 Core Services
               </motion.h2>
               <motion.p
                 variants={fadeIn}
-                className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground"
+                className="mt-4 max-w-2xl mx-auto md:text-lg text-muted-foreground"
               >
                 Secure and efficient digital solutions for all your legal
                 document needs.
