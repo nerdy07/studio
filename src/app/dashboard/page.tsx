@@ -220,7 +220,7 @@ export default function DashboardPage() {
                     </Avatar>
 
                     <div className="flex flex-col flex-1">
-                      <p className="text-[12px] font-semibold text-foreground">
+                      <p className="text-[9.4px] md:text-[12px] font-semibold text-foreground">
                         {app.affidavitType}
                       </p>
                       <p className="text-xs text-muted-foreground">
